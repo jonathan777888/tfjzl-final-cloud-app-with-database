@@ -12,3 +12,4 @@ urlpatterns = [
         name='show_exam_result'
     ),
 ]
+path('', include('onlinecourse.urls')),
