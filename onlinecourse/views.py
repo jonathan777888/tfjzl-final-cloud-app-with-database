@@ -27,9 +27,11 @@ def submit(request, course_id):
             choice = get_object_or_404(Choice, pk=choice_id)
             submission.choices.add(choice)
 
-        return redirect('onlinecourse:show_exam_result',
-                        course_id=course.id,
-                        submission_id=submission.id)
+        return redirect(
+            'onlinecourse:show_exam_result',
+            course_id=course.id,
+            submission_id=submission.id
+        )
 
     return redirect('onlinecourse:course_details', course_id=course.id)
 
@@ -39,10 +41,10 @@ def show_exam_result(request, course_id, submission_id):
     submission = get_object_or_404(Submission, pk=submission_id)
 
     selected_choices = submission.choices.all()
+    questions = Question.objects.filter(course=course)
+
     total_score = 0
     full_score = 0
-
-    questions = Question.objects.filter(course=course)
 
     for question in questions:
         full_score += question.grade
