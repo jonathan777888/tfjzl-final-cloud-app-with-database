@@ -27,11 +27,7 @@ class Learner(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    occupation = models.CharField(
-        max_length=30,
-        choices=OCCUPATION_CHOICES,
-        default=STUDENT
-    )
+    occupation = models.CharField(max_length=30, choices=OCCUPATION_CHOICES, default=STUDENT)
     social_link = models.URLField(blank=True)
 
     def __str__(self):
